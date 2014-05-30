@@ -112,7 +112,7 @@
         var ad_count = calc.elements.ad_count.value;
 
         var total = pageview * (100-adblock)/100 * cpm * ad_count;
-        document.getElementById("result").innerHTML = total+"&euro;"
+        document.getElementById("result").innerHTML = Math.round(total)+"&euro;"
     });
 </script>
 </body>
