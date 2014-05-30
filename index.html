@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculatrice de publicité : Estimateur de revenu publicitaire d'un site web.</title>
+    <meta charset="utf-8">
+    <style type="text/css">
+        body{
+            width: 960px;
+            margin: auto;
+            font-family: Segoe UI, sans-serif;
+        }
+
+        hgroup{
+            text-align: center;
+        }
+
+        p{
+            text-align: justify;
+        }
+
+        form{
+            width: 300px;
+            margin: auto;
+            float: left;
+        }
+
+        label{
+            display: block;
+            margin: 30px 0;
+        }
+
+        input, button{
+            display: block;
+            width: 300px;
+            text-align: right;
+            margin: 5px 0;
+
+        }
+
+        button{
+            text-align: center;
+            padding: 10px;
+        }
+
+        #result{
+            font-size: 400%;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<hgroup>
+    <h1>Calculatrice de publicité</h1>
+    <h2>Estimateur de revenu publicitaire</h2>
+</hgroup>
+
+<section>
+    <h3>Comment ça marche ?</h3>
+
+    <div>
+        <p>La publicité sur internet est basée aujourd'hui assez souvent sur deux types de revenus : le visionnage de la pub et le click sur la pub.</p>
+        <p>Le revenu publicitaire est calculé en prenant le nombre de vues (ou le nombre de clicks) multiplié par un revenu moyen pour mille vues(ou clicks).
+            On appelle ce revenu, le <abbr title="Cout pour mille">CPM</abbr>. Le CPM est une valeur qui oscielle beaucoup et qui selon le type de pub peut aller des moins de 1 euros à plusieurs dizaines d'euros.
+        </p>
+        <p>Comme exemple de CPM on peut citer Youtube avec <a href="http://www.tubefilter.com/2014/02/03/youtube-average-cpm-advertising-rate/" target="_blank">un CPM moyen de 7.6 dollars</a>,
+            <a href="http://adfly-earning.blogspot.fr/" target="_blank">5$ pour adf.ly</a> ou encore <a
+                    href="https://twitter.com/JulienPhilippe_/status/411141762166829056" target="_blank"> 12 euros pour dailymotion.</a> </p>
+    </div>
+
+    <h3>Comment calculer un revenu publicitaire d'un site ?</h3>
+    <div>
+        <p>
+            Pour calculer une estimation du revenu publicitaire d'un site, on peut faire appel à plusieurs données trouvable facilement sur le net.
+            En utilisant une approximation du nombre de page vues par mois sur un site fournie par des sites comme
+            <a href="http://www.similarweb.com/" target="_blank">SimilarWeb</a>.
+            On peut ensuite estimer le nombre de personnes bloquant les pubs selon le secteur avec un rapport comme <a
+                href="http://downloads.pagefair.com/reports/the_rise_of_adblocking.pdf" target="_blank">celui-ci</a>.
+            Finalement, en estimant un nombre de pub par page et un cpm, on peut obtenir le revenu du site.
+        </p>
+    </div>
+</section>
+
+<section>
+    <h3>La calculette</h3>
+
+    <form action="#" id="calculator">
+        <label>Page vues (en milliers de vues) : <input type="number" name="pageview" value="1000" min="1" step="1" /></label>
+        <label>Taux de bloquage de pub en % : <input type="number" name="adblock" value="22.7" min="0" step="0.1" /></label>
+        <label>CPM moyen du site pour une pub : <input type="number" name="cpm" value="1" min="0.1" step="0.1" /></label>
+        <label>Nombre de pub par page : <input type="number" name="ad_count" value="1" min="1" step="1" /></label>
+
+        <button>Calculer</button>
+    </form>
+    <h3 style="text-indent: 20px;">Revenu Publicitaire calculé :</h3>
+    <div id="result">
+        <span style="font-size: 30%">Appuyez sur calculer !</span>
+    </div>
+</section>
+
+<section style="clear: both; padding: 30px;">
+    <p style="text-align: center"><em>Je vous laisse tirer vos propres conclusions sur les revenus publicitaires de certains sites.</em></p>
+</section>
+<script type="text/javascript">
+    var calc = document.getElementById("calculator");
+    calc.addEventListener("submit", function(e){
+        e.preventDefault();
+        var pageview = calc.elements.pageview.value;
+        var adblock = calc.elements.adblock.value;
+        var cpm = calc.elements.cpm.value;
+        var ad_count = calc.elements.ad_count.value;
+
+        var total = pageview * (100-adblock)/100 * cpm * ad_count;
+        document.getElementById("result").innerHTML = total+"&euro;"
+    });
+</script>
+</body>
+</html>
